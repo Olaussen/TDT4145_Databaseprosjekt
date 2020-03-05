@@ -39,7 +39,7 @@ public class LagAvtaleCtrl extends DBConn {
     public void lagAlarm (String alarmTekst) {
         
     }
-    public void fullførAvtale () {
+    public void fullforAvtale () {
         avtale.save(conn);
         try {
             conn.commit();

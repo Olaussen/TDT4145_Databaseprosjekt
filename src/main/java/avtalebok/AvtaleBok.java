@@ -16,6 +16,6 @@ public class AvtaleBok {
         lagAvtaleCtrl.velgBruker(1);
         lagAvtaleCtrl.velgBruker(2);
         lagAvtaleCtrl.velgTidspunkt(110, 1);
-        lagAvtaleCtrl.fullførAvtale();
+        lagAvtaleCtrl.fullforAvtale();
     }
 }
