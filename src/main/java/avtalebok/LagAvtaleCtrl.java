@@ -25,7 +25,7 @@ public class LagAvtaleCtrl extends DBConn {
     }
 
     public void lagAvtale (int startMTid, int sluttMTid){
-        avtale = new Avtale (startMTid,0,Avtale.MÃ˜TE);
+        avtale = new Avtale (startMTid,0,Avtale.MAATE);
         this.startMuligTid = startMTid;
         this.sluttMuligTid = sluttMTid;
     }

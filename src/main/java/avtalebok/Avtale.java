@@ -14,7 +14,7 @@ public class Avtale extends ActiveDomainObject {
     private int startTid;
     private int timer;
     private int type;
-    public static final int MÃ˜TE=1;
+    public static final int MAATE=1;
     public static final int PROGRAM=2;
     private static final int NOID = -1;
     
@@ -41,7 +41,7 @@ public class Avtale extends ActiveDomainObject {
     public void initialize (Connection conn) {
         try {
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select starttid, timer, alarmtype from Avtale where aid=" + aid);
+            ResultSet rs = stmt.executeQuery("select * from videomedia where tittel = ''");
             while (rs.next()) {
                 startTid =  rs.getInt("starttid");
                 timer = rs.getInt("timer");
@@ -63,8 +63,9 @@ public class Avtale extends ActiveDomainObject {
     @Override
     public void save (Connection conn) {
         try {    
-            Statement stmt = conn.createStatement(); 
-            stmt.executeUpdate("insert into Avtale values (NULL,"+startTid+","+timer+","+type+")");
+            Statement stmt = conn.createStatement();
+            String query = "insert into Avtale values (NULL,"+startTid+","+timer+","+type+")";
+            stmt.executeUpdate(query);
         } catch (Exception e) {
             System.out.println("db error during insert of Avtale="+e);
             return;

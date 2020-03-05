@@ -15,11 +15,9 @@ public abstract class DBConn {
       Properties p = new Properties();
       p.put("user", "jonatbr_demo");
       p.put("password", "12345678");
-      //            conn = DriverManager.getConnection("jdbc:mysql://mysql.ansatt.ntnu.no/sveinbra_ektdb?autoReconnect=true&useSSL=false",p);
-      conn = DriverManager.getConnection("jdbc:mysql:mysql.stud.ntnu.no?autoReconnect=true&useSSL=false",p);
+      conn = DriverManager.getConnection("jdbc:mysql://mysql.stud.ntnu.no:3306/jonatbr_databaseprosjekt", p);
     } catch (Exception e)
     {
       throw new RuntimeException("Unable to connect", e);
     }
-  }
-}
+  }}

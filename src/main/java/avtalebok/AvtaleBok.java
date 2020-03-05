@@ -12,10 +12,10 @@ public class AvtaleBok {
     public static void main(String[] args) {
         // TODO code application logic here
         LagAvtaleCtrl lagAvtaleCtrl = new LagAvtaleCtrl ();
-        lagAvtaleCtrl.lagAvtale(100, 120);
+        lagAvtaleCtrl.lagAvtale(2123123100, 120);
         lagAvtaleCtrl.velgBruker(1);
         lagAvtaleCtrl.velgBruker(2);
-        lagAvtaleCtrl.velgTidspunkt(110, 1);
+        lagAvtaleCtrl.velgTidspunkt(123123120, 1);
         lagAvtaleCtrl.fullforAvtale();
     }
 }

@@ -28,6 +28,7 @@ public class Bruker extends ActiveDomainObject {
                 navn =  rs.getString("navn");
                 epost = rs.getString("epost");
                 type = rs.getInt("brukertype");
+                System.out.println(navn + " " + epost + "  " + type);
             }
 
         } catch (Exception e) {

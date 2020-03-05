@@ -1,10 +1,14 @@
 package mainpackage;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
 
   public static void main(String[] args) {
     // TODO code application logic her
-        RegMaalCtrl maalCtrl = new RegMaalCtrl ();
+       /* RegMaalCtrl maalCtrl = new RegMaalCtrl ();
         maalCtrl.connect();
         maalCtrl.startReg(123123);
         maalCtrl.regPost(0, 0, 70);
@@ -20,9 +24,35 @@ public class Main {
         if (maalCtrl.sluttReg()) {
           System.out.println("Profit!!");
         }
-    ResultatCtrl resultatCtrl = new ResultatCtrl ();
+
+    SkuespillerRolleCtrl resultatCtrl = new SkuespillerRolleCtrl ();
     resultatCtrl.connect();
-    resultatCtrl.printKlasseResultat("H50");
+    resultatCtrl.printSkuespillerRolle("Jonathan Brooks");
+
+    SkuespillerIFilmCtrl resultatCtrl = new SkuespillerIFilmCtrl ();
+    resultatCtrl.connect();
+    resultatCtrl.printSkuespillerIFilm("Jonathan Brooks");*/
+    Person t = new Person(5);
+
+    Person n = new Person(4);
+    Person b = new Person(1);
+    List<Person> manusforfattere = new ArrayList<>();
+    manusforfattere.add(n);
+    manusforfattere.add(b);
+
+    Skuespiller p = new Skuespiller(2, "Bolle");
+    Skuespiller h = new Skuespiller(3, "Besteladden");
+    List<Skuespiller> skuespillere = new ArrayList<>();
+    skuespillere.add(p);
+    skuespillere.add(h);
+
+
+    AddVideoMediaCtrl a = new AddVideoMediaCtrl();
+    a.lagVideomedia("Shing shong bong", "Kino",
+        210, "2011-7-11", 2011,
+        "Skrootjinfokal", 1, "hauk.no", manusforfattere, t, skuespillere);
+    //a.getAll();
+    a.fullfor();
 
   }
 }
