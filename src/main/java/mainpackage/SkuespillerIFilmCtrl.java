@@ -11,7 +11,6 @@ public class SkuespillerIFilmCtrl extends DBConn {
       String query = "select distinct videomedia.tittel from videomedia join medvirkningsrolle on " +
           "videomedia.id = medvirkningsrolle.filmid join person on medvirkningsrolle.personid = person.id " +
           "where person.navn = '" + skuespillerNavn + "' " + "and medvirkningsrolle.medvirkningsrolle = " + "'Skuespiller'";
-      System.out.println(query);
 
       ResultSet rs = stmt.executeQuery(query);
       int nr = 1;
@@ -19,6 +18,10 @@ public class SkuespillerIFilmCtrl extends DBConn {
       System.out.println(skuespillerNavn + " spiller i filmen(e): ");
       while (rs.next()) {
         System.out.println(" " + nr++ + " " +  rs.getString("tittel"));
+      }
+
+      if(nr == 1) {
+        System.out.println(skuespillerNavn + " spiller ikke i noen filmer");
       }
 
     } catch (Exception e) {

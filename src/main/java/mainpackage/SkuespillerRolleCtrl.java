@@ -8,18 +8,21 @@ public class SkuespillerRolleCtrl extends DBConn {
   public void printSkuespillerRolle (String skuespillerNavn) {
     try {
       Statement stmt = conn.createStatement();
-      String query = "select medvirkningsrolle.rollenavn from medvirkningsrolle join person on " +
-          "person.id = medvirkningsrolle.personid where person.navn = '" + skuespillerNavn +"' " +
+      String query = "select medvirkningsrolle.rollenavn, videomedia.tittel from medvirkningsrolle join person on " +
+          "person.id = medvirkningsrolle.personid join videomedia on medvirkningsrolle.filmid = videomedia.id where person.navn = '" + skuespillerNavn +"' " +
           "and medvirkningsrolle.medvirkningsrolle = " + "'Skuespiller'";
-      System.out.println(query);
 
 
       ResultSet rs = stmt.executeQuery(query);
       int nr = 1;
-      System.out.println("Resultatliste for skuespiller "+ skuespillerNavn);
-      System.out.println("Jonathan Brooks har rollen(e)");
+      System.out.println("\nResultatliste for skuespiller "+ skuespillerNavn);
+      System.out.println(skuespillerNavn + " har rollen(e):");
       while (rs.next()) {
-        System.out.println(" " + nr++ + " " +  rs.getString("rollenavn"));
+        System.out.println(" " + nr++ + " " +  rs.getString("rollenavn") + " i filmen "
+                           + rs.getString("tittel"));
+      }
+      if(nr == 1){
+        System.out.println(skuespillerNavn + " har ingen aktive roller");
       }
 
     } catch (Exception e) {

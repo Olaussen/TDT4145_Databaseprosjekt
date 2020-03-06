@@ -20,10 +20,12 @@ public class Videomedia extends ActiveDomainObject {
   private List<Person> manusForfattere;
   private Person regissor;
   private List<Skuespiller> skuespillere;
+  private List<String> categories;
 
   public Videomedia(String tittel, String lagetfor, int lengde, String lanseringsdato,
                     int utgivelsesaar, String beskrivelse, int utgittSomVideo, String selskapsURL,
-                    List<Person> manusForfattere, Person regissor, List<Skuespiller> skuespillere) {
+                    List<Person> manusForfattere, Person regissor, List<Skuespiller> skuespillere,
+                    List<String> categories) {
     this.tittel = tittel;
     this.lagetfor = lagetfor;
     this.lengde = lengde;
@@ -35,6 +37,7 @@ public class Videomedia extends ActiveDomainObject {
     this.manusForfattere = manusForfattere;
     this.regissor = regissor;
     this.skuespillere = skuespillere;
+    this.categories = categories;
   }
 
   public static void getAll(Connection conn) {
@@ -113,7 +116,6 @@ public class Videomedia extends ActiveDomainObject {
       String query = "insert into videomedia values (NULL,'" + tittel + "','" + lagetfor + "'," +
           lengde + ",'" + lanseringsdato + "'," + utgivelsesaar + ",'" + beskrivelse + "'," +
           utgittSomVideo + ",'" + selskapsURL + "')";
-      System.out.println(query);
       stmt.executeUpdate(query);
       int id = getFilmId(tittel, conn);
 
@@ -122,21 +124,23 @@ public class Videomedia extends ActiveDomainObject {
       String skuespillerstring = "Skuespiller";
       for (Skuespiller skuespiller : skuespillere) {
         query = "insert into medvirkningsrolle (filmid, personid, medvirkningsrolle, rollenavn) values (" + id + ", " + skuespiller.getId() + ", " + "'" + skuespillerstring + "'" + ", " + "'" + skuespiller.getRolle() + "'" + ");";
-        System.out.println(query);
         stmt.executeUpdate(query);
       }
 
       String manusforfatterstring = "Manusforfatter";
       for (Person manusforfatter : manusForfattere) {
         query = "insert into medvirkningsrolle (filmid, personid, medvirkningsrolle) values (" + id + ", " + manusforfatter.getId() + ", " + "'" + manusforfatterstring + "'" + ");";
-        System.out.println(query);
         stmt.executeUpdate(query);
       }
 
       String regissorstring = "Regissor";
       query = "insert into medvirkningsrolle (filmid, personid, medvirkningsrolle) values (" + id + ", " + regissor.getId() + ", " + "'" + regissorstring + "'" + ");";
-      System.out.println(query);
       stmt.executeUpdate(query);
+
+      for (String cat : categories) {
+        query = "insert into kategori values ('"+ cat + "'"+","+ id + ");";
+        stmt.executeUpdate(query);
+      }
 
     } catch (Exception e) {
       e.printStackTrace();

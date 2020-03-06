@@ -21,9 +21,10 @@ public class AddVideoMediaCtrl extends DBConn {
 
   public void lagVideomedia (String tittel, String lagetfor, int lengde, String lanseringsdato,
                              int utgivelsesaar, String beskrivelse, int utgittSomVideo,
-                             String selskapsURL, List<Person> manusforfatter, Person regissor, List<Skuespiller> skuespillere){
+                             String selskapsURL, List<Person> manusforfatter, Person regissor,
+                             List<Skuespiller> skuespillere, List<String> categories){
     film = new Videomedia (tittel, lagetfor, lengde, lanseringsdato, utgivelsesaar, beskrivelse,
-        utgittSomVideo, selskapsURL, manusforfatter, regissor, skuespillere);
+        utgittSomVideo, selskapsURL, manusforfatter, regissor, skuespillere, categories);
   }
 
   public void getPerson(int id ){
