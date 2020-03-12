@@ -1,14 +1,16 @@
 package mainpackage;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public class Main {
+public class Main extends DBConn{
 
-  public static void main(String[] args) {
+  public static void main(String[] args){
     /*
 
     SkuespillerRolleCtrl resultatCtrl = new SkuespillerRolleCtrl ();
@@ -53,10 +55,41 @@ public class Main {
 
   }
 
+  public void hentRegissorer(){
+    try{
+      this.connect();
+      Statement st = conn.createStatement();
+      String directors = "SELECT DISTINCT medvirkningsrolle.personID, person.navn FROM medvirkningsrolle, person WHERE medvirkningsrolle.personID = person.id;";
+      ResultSet r = st.executeQuery(directors);
+      while(r.next()){
+        System.out.println(r.getString("personID") + ") " + r.getString("navn"));
+      }
+    }
+    catch (Exception e){
+        System.out.println(e.toString());
+    }
+  }
+
+  public void hentURLer(){
+    try{
+      this.connect();
+      Statement st = conn.createStatement();
+      String directors = "SELECT url FROM selskap;";
+      ResultSet r = st.executeQuery(directors);
+      while(r.next()){
+        System.out.println(r.getString("url"));
+      }
+    }
+    catch (Exception e){
+      System.out.println(e.toString());
+    }
+  }
+
   public static void run() {
     SkuespillerRolleCtrl sir = new SkuespillerRolleCtrl();
     SkuespillerIFilmCtrl sif = new SkuespillerIFilmCtrl();
     AddVideoMediaCtrl avm = new AddVideoMediaCtrl();
+    Main m = new Main();
 
     System.out.println("\n\n\nWhat do you want to do?");
     System.out.println("1) Find all the roles a spesific actor plays");
@@ -108,7 +141,7 @@ public class Main {
           int length = Integer.valueOf(scanner.nextLine());
           if (String.valueOf(length).equals("") || String.valueOf(length).toLowerCase().equals("q")) break;
 
-          System.out.println("Enter the date of release: ");
+          System.out.println("Enter the date of release: (YYYY-MM-DD) ");
           String releasedate = scanner.nextLine();
           if (releasedate.toLowerCase().equals("q") || !Pattern.matches("^(19|20)\\d\\d([- /.])(0[1-9]|1[012])\\2(0[1-9]|[12][0-9]|3[01])$", releasedate))
             throw new Exception("An error occured!");
@@ -129,11 +162,13 @@ public class Main {
             throw new Exception("An error occured!");
 
           System.out.println("Enter the URL of the company: ");
+          m.hentURLer();
           String url = scanner.nextLine();
           if (url.toLowerCase().equals("q") || url.equals(""))
             throw new Exception("An error occured!");
 
           System.out.println("Enter the id of the director: ");
+          m.hentRegissorer();
           String id = scanner.nextLine();
           if (String.valueOf(id).toLowerCase().equals("q") || String.valueOf(id).equals(""))
             throw new Exception("An error occured!");
