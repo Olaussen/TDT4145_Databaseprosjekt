@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="brookserlame:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/brookserlame_jar</output-path>
+    <root id="archive" name="brookserlame.jar">
+      <element id="module-output" name="brookserlame" />
+      <element id="module-output" name="brookserlame.main" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/mysql/mysql-connector-java/5.1.16/2780fb82cc9c7083f06724432b4f1d1607548d77/mysql-connector-java-5.1.16.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
