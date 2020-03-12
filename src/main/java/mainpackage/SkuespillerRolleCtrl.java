@@ -8,7 +8,7 @@ public class SkuespillerRolleCtrl extends DBConn {
   public void printSkuespillerRolle (String skuespillerNavn) {
     try {
       Statement stmt = conn.createStatement();
-      String query = "select medvirkningsrolle.rollenavn, videomedia.tittel from medvirkningsrolle join person on " +
+      String query = "select distinct medvirkningsrolle.rollenavn, videomedia.tittel from medvirkningsrolle join person on " +
           "person.id = medvirkningsrolle.personid join videomedia on medvirkningsrolle.filmid = videomedia.id where person.navn = '" + skuespillerNavn +"' " +
           "and medvirkningsrolle.medvirkningsrolle = " + "'Skuespiller'";
 
