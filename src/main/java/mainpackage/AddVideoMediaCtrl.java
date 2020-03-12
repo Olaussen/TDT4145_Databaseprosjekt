@@ -10,7 +10,6 @@ public class AddVideoMediaCtrl extends DBConn {
 
   public AddVideoMediaCtrl () {
     connect();
-    // La laging av avtale vÃ¦re en transaksjon
     try {
       conn.setAutoCommit(false);
     } catch (SQLException e) {

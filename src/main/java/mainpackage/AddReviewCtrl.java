@@ -10,11 +10,10 @@ public class AddReviewCtrl extends DBConn{
 
   public AddReviewCtrl() {
     connect();
-    // La laging av avtale vÃ¦re en transaksjon
     try {
       conn.setAutoCommit(false);
     } catch (SQLException e) {
-      System.out.println("db error during setAuoCommit of AddVideoMediaCtrl=" + e);
+      System.out.println("db error during setAuoCommit of AddReviewCtrl=" + e);
       return;
     }
   }
@@ -28,6 +27,10 @@ public class AddReviewCtrl extends DBConn{
     p.initialize(conn);
   }
 
+  public void getEpisodes(String title) {
+    Serie.getEpisodes(conn, title);
+  }
+
   public void getAll() {
     Anmeldelse.getAll(conn);
   }
@@ -38,7 +41,7 @@ public class AddReviewCtrl extends DBConn{
     try {
       conn.commit();
     } catch (SQLException e) {
-      System.out.println("db error during commit of LagAvtaleCtrl=" + e);
+      System.out.println("db error during commit of AddReviewCtrl=" + e);
       return;
     }
   }
