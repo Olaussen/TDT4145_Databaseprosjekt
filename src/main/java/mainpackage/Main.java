@@ -11,48 +11,11 @@ import java.util.regex.Pattern;
 public class Main extends DBConn {
 
   public static void main(String[] args) {
-    /*
-
-    SkuespillerRolleCtrl resultatCtrl = new SkuespillerRolleCtrl ();
-    resultatCtrl.connect();
-    resultatCtrl.printSkuespillerRolle("Jonathan Brooks");
-
-    SkuespillerIFilmCtrl resultatCtrl = new SkuespillerIFilmCtrl ();
-    resultatCtrl.connect();
-    resultatCtrl.printSkuespillerIFilm("Jonathan Brooks");*/
-   /* Person t = new Person(5);
-
-    Person n = new Person(4);
-    Person b = new Person(1);
-    List<Person> manusforfattere = new ArrayList<>();
-    manusforfattere.add(n);
-    manusforfattere.add(b);
-
-    Skuespiller p = new Skuespiller(2, "Bolle");
-    Skuespiller h = new Skuespiller(3, "Besteladden");
-    List<Skuespiller> skuespillere = new ArrayList<>();
-    skuespillere.add(p);
-    skuespillere.add(h);
-
-
-    AddVideoMediaCtrl a = new AddVideoMediaCtrl();
-    a.lagVideomedia("Shing shong bong", "Kino",
-        210, "2011-7-11", 2011,
-        "Skrootjinfokal", 1, "hauk.no", manusforfattere, t, skuespillere);
-    //a.getAll();
-    a.fullfor();*/
-
-   /*AddReviewCtrl arc = new AddReviewCtrl();
-    arc.getAll();
-    //arc.fullfor();*/
-
     System.out.println("Welcome to the film database program!");
     System.out.println("The best way for you to DAB out some informastion about your "
         + "favorite movies and series! \n");
 
     Main.run();
-
-
   }
 
   public static void run() {
