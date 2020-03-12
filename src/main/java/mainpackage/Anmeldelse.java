@@ -1,6 +1,5 @@
 package mainpackage;
 
-import avtalebok.ActiveDomainObject;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

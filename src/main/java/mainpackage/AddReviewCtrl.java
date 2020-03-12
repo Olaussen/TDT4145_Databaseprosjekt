@@ -1,7 +1,5 @@
 package mainpackage;
 
-import com.sun.org.apache.bcel.internal.generic.ANEWARRAY;
-
 import java.sql.SQLException;
 
 public class AddReviewCtrl extends DBConn{

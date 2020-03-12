@@ -1,12 +1,12 @@
 package mainpackage;
 
-import avtalebok.ActiveDomainObject;
+
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class Person extends ActiveDomainObject {
+public class Person {
 
   private int personid;
   private String navn;
@@ -44,13 +44,5 @@ public class Person extends ActiveDomainObject {
     }
   }
 
-  @Override
-  public void refresh(Connection conn) {
-    initialize(conn);
-  }
 
-  @Override
-  public void save(Connection conn) {
-
-  }
 }
