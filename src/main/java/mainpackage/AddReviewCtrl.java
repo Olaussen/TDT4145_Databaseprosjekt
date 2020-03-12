@@ -27,8 +27,8 @@ public class AddReviewCtrl extends DBConn{
     p.initialize(conn);
   }
 
-  public void getEpisodes(String title) {
-    Serie.getEpisodes(conn, title);
+  public boolean getEpisodes(String title) {
+    return Serie.getEpisodes(conn, title);
   }
 
   public void getAll() {
