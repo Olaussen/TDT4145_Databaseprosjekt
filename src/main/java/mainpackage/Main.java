@@ -1,14 +1,16 @@
 package mainpackage;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public class Main {
+public class Main extends DBConn{
 
-  public static void main(String[] args) {
+  public static void main(String[] args){
     /*
 
     SkuespillerRolleCtrl resultatCtrl = new SkuespillerRolleCtrl ();
@@ -53,11 +55,41 @@ public class Main {
 
   }
 
+  public void hentRegissorer(){
+    try{
+      this.connect();
+      Statement st = conn.createStatement();
+      String directors = "SELECT DISTINCT medvirkningsrolle.personID, person.navn FROM medvirkningsrolle, person WHERE medvirkningsrolle.personID = person.id;";
+      ResultSet r = st.executeQuery(directors);
+      while(r.next()){
+        System.out.println(r.getString("personID") + ") " + r.getString("navn"));
+      }
+    }
+    catch (Exception e){
+        System.out.println(e.toString());
+    }
+  }
+
+  public void hentURLer(){
+    try{
+      this.connect();
+      Statement st = conn.createStatement();
+      String directors = "SELECT url FROM selskap;";
+      ResultSet r = st.executeQuery(directors);
+      while(r.next()){
+        System.out.println(r.getString("url"));
+      }
+    }
+    catch (Exception e){
+      System.out.println(e.toString());
+    }
+  }
+
   public static void run() {
     SkuespillerRolleCtrl sir = new SkuespillerRolleCtrl();
     SkuespillerIFilmCtrl sif = new SkuespillerIFilmCtrl();
     AddVideoMediaCtrl avm = new AddVideoMediaCtrl();
-    AddReviewCtrl arc = new AddReviewCtrl();
+    Main m = new Main();
 
     System.out.println("\n\n\nWhat do you want to do?");
     System.out.println("1) Find all the roles a spesific actor plays");
@@ -71,8 +103,7 @@ public class Main {
 
     Scanner scanner = new Scanner(System.in);
     String choice = scanner.nextLine();
-    if (choice.toLowerCase().equals("q"))
-      System.exit(0);
+    if(choice.toLowerCase().equals("q")) System.exit(0);
     System.out.println("You chose option: " + choice + "\n");
 
     switch (Integer.valueOf(choice)) {
@@ -99,49 +130,48 @@ public class Main {
           System.out.println("Enter the title of the movie: ");
           String title = scanner.nextLine();
           if (title.toLowerCase().equals("q") || title.equals(""))
-            break;
+            throw new Exception("An error occured!");
 
           System.out.println("Enter the medium the movie was made for (Kino?): ");
           String lagetfor = scanner.nextLine();
           if (lagetfor.toLowerCase().equals("q") || lagetfor.equals(""))
-            break;
+            throw new Exception("An error occured!");
 
           System.out.println("Enter the length of the movie in minutes: ");
           int length = Integer.valueOf(scanner.nextLine());
-          if (String.valueOf(length).equals("") || String.valueOf(length).toLowerCase().equals("q"))
-            break;
+          if (String.valueOf(length).equals("") || String.valueOf(length).toLowerCase().equals("q")) break;
 
-          System.out.println("Enter the date of release: ");
+          System.out.println("Enter the date of release: (YYYY-MM-DD) ");
           String releasedate = scanner.nextLine();
-          if (releasedate.toLowerCase().equals("q") || !Pattern
-              .matches("^(19|20)\\d\\d([- /.])(0[1-9]|1[012])\\2(0[1-9]|[12][0-9]|3[01])$",
-                  releasedate))
-            break;
+          if (releasedate.toLowerCase().equals("q") || !Pattern.matches("^(19|20)\\d\\d([- /.])(0[1-9]|1[012])\\2(0[1-9]|[12][0-9]|3[01])$", releasedate))
+            throw new Exception("An error occured!");
 
           System.out.println("Enter the year of release: ");
           int year = Integer.valueOf(scanner.nextLine());
           if (String.valueOf(year).equals("") || String.valueOf(year).toLowerCase().equals("q"))
-            break;
+            throw new Exception("An error occured!");
 
           System.out.println("Enter a description of the movie: ");
           String desc = scanner.nextLine();
           if (String.valueOf(desc).toLowerCase().equals("q") || desc.equals(""))
-            break;
+            throw new Exception("An error occured!");
 
           System.out.println("Enter 1 if the movie was released as a video, 0 if not: ");
           int ufv = Integer.valueOf(scanner.nextLine());
           if (String.valueOf(ufv).toLowerCase().equals("q") || String.valueOf(ufv).equals(""))
-            break;
+            throw new Exception("An error occured!");
 
           System.out.println("Enter the URL of the company: ");
+          m.hentURLer();
           String url = scanner.nextLine();
           if (url.toLowerCase().equals("q") || url.equals(""))
-            break;
+            throw new Exception("An error occured!");
 
           System.out.println("Enter the id of the director: ");
+          m.hentRegissorer();
           String id = scanner.nextLine();
           if (String.valueOf(id).toLowerCase().equals("q") || String.valueOf(id).equals(""))
-            break;
+            throw new Exception("An error occured!");
 
           Person director = new Person(Integer.valueOf(id));
           List<Person> mff = new ArrayList<>();
@@ -149,7 +179,7 @@ public class Main {
           String[] input = scanner.nextLine().split(",");
           for (String mid : input) {
             if (mid.toLowerCase().equals("q") || mid.equals(""))
-              break;
+              throw new Exception("An error occured!");
             mff.add(new Person(Integer.valueOf(mid)));
           }
 
@@ -157,12 +187,12 @@ public class Main {
           System.out.println("Enter the ids of the actors (1,2,3,4): ");
           String[] ids = scanner.nextLine().split(",");
           if (ids[0].toLowerCase().equals("q") || ids[0].equals(""))
-            break;
+            throw new Exception("An error occured!");
 
           System.out.println("Enter the roles of the actors (1,2,3,4): ");
           String[] roles = scanner.nextLine().split(",");
           if (roles[0].toLowerCase().equals("q") || roles[0].equals(""))
-            break;
+            throw new Exception("An error occured!");
           int count = 0;
           for (String sid : ids) {
             ssr.add(new Skuespiller(Integer.valueOf(id), roles[count]));
@@ -173,7 +203,7 @@ public class Main {
           System.out.println("Enter the categories of the film (Horror,Love,etc.): ");
           String[] categ = scanner.nextLine().split(",");
           if (categ[0].toLowerCase().equals("q") || categ[0].equals(""))
-            break;
+            throw new Exception("An error occured!");
           for (String cat : categ) {
             cats.add(cat);
           }
@@ -183,30 +213,6 @@ public class Main {
           avm.fullfor();
           System.out.println("Videomedia added to database!");
           break;
-        } catch (Exception e) {
-          System.out.println("An error occured!");
-          break;
-        }
-
-      case 5:
-        try {
-          System.out.println("Enter the title series: ");
-          String title = scanner.nextLine();
-          if (title.toLowerCase().equals("q") || title.equals(""))
-            break;
-
-          arc.getEpisodes(title);
-
-          /*System.out.println("Enter the id of the episode you want to review: ");
-          String episodeid = scanner.nextLine();
-          if (episodeid.toLowerCase().equals("q") || episodeid.equals(""))
-            break;*/
-
-          //arc.lagAnmeldelse("Badbad", 1, "Hauk", Integer.valueOf(episodeid));
-          //arc.fullfor();
-          break;
-
-
         } catch (Exception e) {
           System.out.println("An error occured!");
           break;
