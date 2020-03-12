@@ -26,24 +26,12 @@ public class AddVideoMediaCtrl extends DBConn {
         utgittSomVideo, selskapsURL, manusforfatter, regissor, skuespillere, categories);
   }
 
-  public void getPerson(int id ){
-    Person p = new Person(id);
-    p.initialize(conn);
-  }
-
-  public void getAll() {
-  Videomedia.getAll(conn);
-  }
- /* public void hentVideomedia (String tittel) {
-    film.getInfo(tittel, conn);
-  }*/
-
   public void fullfor () {
     film.save(conn);
     try {
       conn.commit();
     } catch (SQLException e) {
-      System.out.println("db error during commit of LagAvtaleCtrl="+e);
+      System.out.println("db error during commit of avmc="+e);
       return;
     }
   }

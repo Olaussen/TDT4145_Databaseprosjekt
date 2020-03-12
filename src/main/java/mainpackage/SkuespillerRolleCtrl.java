@@ -28,15 +28,5 @@ public class SkuespillerRolleCtrl extends DBConn {
     } catch (Exception e) {
       System.out.println("db error during select of skuespiller = "+e);
     }
-
-  }
-  public void printKlasseStrekktid (String klasseNavn) {
-
-  }
-  public void printAlleKlasserResultat () {
-
-  }
-  public void printAlleKlasserStrekktid () {
-
   }
 }

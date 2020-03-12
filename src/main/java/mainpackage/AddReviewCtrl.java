@@ -20,19 +20,9 @@ public class AddReviewCtrl extends DBConn{
     anmeldelse = new Anmeldelse(tekst, rating, anmelder, filmid);
   }
 
-  public void getAnmeldelse(int id){
-    Anmeldelse p = new Anmeldelse(id);
-    p.initialize(conn);
-  }
-
   public boolean getEpisodes(String title) {
     return Serie.getEpisodes(conn, title);
   }
-
-  public void getAll() {
-    Anmeldelse.getAll(conn);
-  }
-
 
   public void fullfor() {
     anmeldelse.save(conn);

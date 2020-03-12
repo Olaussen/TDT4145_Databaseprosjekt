@@ -42,7 +42,7 @@ public class Anmeldelse extends ActiveDomainObject {
 
       }
     } catch (Exception e) {
-      System.out.println("db error during insert of videomedia= " + e);
+      System.out.println("db error during select of anmeldelse= " + e);
       return;
     }
   }
@@ -67,7 +67,7 @@ public class Anmeldelse extends ActiveDomainObject {
       }
 
     } catch (Exception e) {
-      System.out.println("db error during select of bruker= " + e);
+      System.out.println("db error during select of anmeldelse= " + e);
       return;
     }
   }

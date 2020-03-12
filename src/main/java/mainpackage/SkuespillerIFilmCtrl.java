@@ -29,13 +29,4 @@ public class SkuespillerIFilmCtrl extends DBConn {
     }
 
   }
-  public void printKlasseStrekktid (String klasseNavn) {
-
-  }
-  public void printAlleKlasserResultat () {
-
-  }
-  public void printAlleKlasserStrekktid () {
-
-  }
 }

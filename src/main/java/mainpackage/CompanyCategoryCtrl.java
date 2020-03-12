@@ -29,11 +29,6 @@ public class CompanyCategoryCtrl extends DBConn {
       ResultSet rs = stmt.executeQuery(query);
       while (rs.next()) {
         String cat = rs.getString("kategorinavn");
-        /*String tekst = rs.getString("tekst");
-        int rating = rs.getInt("rating");
-        String anmelder = rs.getString("anmelder");
-        int filmid = rs.getInt("filmid");*/
-
         categories.add(cat);
       }
 

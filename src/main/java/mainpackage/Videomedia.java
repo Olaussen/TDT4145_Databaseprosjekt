@@ -74,7 +74,7 @@ public class Videomedia extends ActiveDomainObject {
         return rs.getInt("id");
       }
     } catch (Exception e) {
-      System.out.println("neger as");
+      System.out.println("An error occured!");
     }
     return 0;
   }
@@ -97,7 +97,8 @@ public class Videomedia extends ActiveDomainObject {
       }
 
     } catch (Exception e) {
-      System.out.println("db error during select of avtale= " + e);
+      System.out.println("db error during select of videomedia"
+          + "= " + e);
       return;
     }
   }
