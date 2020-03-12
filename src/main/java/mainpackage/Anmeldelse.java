@@ -84,7 +84,6 @@ public class Anmeldelse extends ActiveDomainObject {
       Statement stmt = conn.createStatement();
       String query = "insert into anmeldelse values (NULL,'" + tekst + "'," + rating + ",'" +
           anmelder + "'," + filmid + ")";
-      System.out.println(query);
       stmt.executeUpdate(query);
     }catch(Exception e) {
       e.printStackTrace();
