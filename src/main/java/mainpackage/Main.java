@@ -3,7 +3,6 @@ package mainpackage;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -138,7 +137,7 @@ public class Main extends DBConn {
             break;
           int count = 0;
           for (String sid : ids) {
-            ssr.add(new Skuespiller(Integer.valueOf(id), roles[count]));
+            ssr.add(new Skuespiller(Integer.valueOf(sid), roles[count]));
             count++;
           }
 

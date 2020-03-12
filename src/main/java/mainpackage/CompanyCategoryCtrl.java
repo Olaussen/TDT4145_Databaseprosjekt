@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CompanyCategoryCtrl extends DBConn {
-  private Videomedia film;
 
   public CompanyCategoryCtrl() {
     connect();
